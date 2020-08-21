@@ -22,7 +22,9 @@ class CheckoutConfirmedPreCheckTest extends Unit
      */
     protected function _before(): void
     {
-        $this->quoteTransferMock = $this->getMockBuilder(QuoteTransfer::class)->getMock();
+        $this->quoteTransferMock = $this->getMockBuilder(QuoteTransfer::class)
+                                    ->onlyMethods(['getCheckoutConfirmed'])
+                                    ->getMock();
         $this->checkoutConfirmPreCheck = new CheckoutConfirmedPreCheckPlugin();
     }
 
