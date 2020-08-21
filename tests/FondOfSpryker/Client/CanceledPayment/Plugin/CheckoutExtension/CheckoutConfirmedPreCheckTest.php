@@ -7,7 +7,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 class CheckoutConfirmedPreCheckTest extends Unit
 {
-
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
