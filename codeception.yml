@@ -1,4 +1,4 @@
-namespace: fond-of-spryker/mimic-customer-account
+namespace: fond-of-spryker/cancel-payment
 
 suites:
   unit:

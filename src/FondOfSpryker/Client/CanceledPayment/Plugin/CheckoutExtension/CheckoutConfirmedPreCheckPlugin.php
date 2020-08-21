@@ -22,11 +22,11 @@ class CheckoutConfirmedPreCheckPlugin implements CheckoutPreCheckPluginInterface
         $response = new QuoteValidationResponseTransfer();
 
         $response->setIsSuccessful(
-            $quoteTransfer->getOrderReference() === null || $quoteTransfer->getIdSalesOrder() === null
+            $quoteTransfer->getCheckoutConfirmed() === false
         )->addMessage(
             (new MessageTransfer())
             ->setType(static::MESSAGE_TYPE_ERROR)
-            ->setValue(static::GLOSSARY_KEY_ERROR_ORDER_ALREADY_PLACED)
+            ->setValue(static::GLOSSARY_KEY_ERROR_CHECKOUT_ALREADY_CONFIRMED)
         );
 
         return $response;
