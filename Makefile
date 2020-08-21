@@ -12,7 +12,7 @@ install-dev:
 
 .PHONY: phpcs
 phpcs:
-	./vendor/bin/phpcs --standard=./vendor/spryker/code-sniffer/Spryker/ruleset.xml ./src/
+	./vendor/bin/phpcs --ignore=src/Generated --standard=./vendor/spryker/code-sniffer/Spryker/ruleset.xml src/
 
 .PHONY: phpcbf
 phpcbf:

@@ -9,8 +9,9 @@
     }
   ],
   "scripts": {
-    "test": "vendor/bin/codecept run --coverage-xml",
-    "phpcs": "vendor/bin/phpcs src --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml"
+    "test": "make codeception",
+    "phpcs": "make phpcs",
+    "phpstan": "make phpstan"
   },
   "require": {
     "php": ">=7.2",
@@ -26,7 +27,8 @@
     "phpro/grumphp": "^0.14",
     "sebastian/phpcpd": "^4.0",
     "php-coveralls/php-coveralls": "^2.1",
-    "fond-of-codeception/spryker": "dev-master"
+    "fond-of-codeception/spryker": "dev-master",
+    "phpstan/phpstan": "^0.12.38"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
