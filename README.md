@@ -16,7 +16,7 @@ For example Paypal or 3d-secure. Currently it contains a plugin which will set a
 
 namespace Pyz\Client\Checkout;
 
-use FondOfSpryker\Client\CanceledPayment\Plugin\CheckoutExtension\CheckoutConfirmedPreCheckTest;
+use FondOfSpryker\Client\CanceledPayment\Plugin\CheckoutExtension\CheckoutConfirmedPreCheck;
 use Spryker\Client\Checkout\CheckoutDependencyProvider as SprykerCheckoutDependencyProvider;
 
 class CheckoutDependencyProvider extends SprykerCheckoutDependencyProvider
@@ -30,7 +30,7 @@ class CheckoutDependencyProvider extends SprykerCheckoutDependencyProvider
     protected function getCheckoutPreCheckPlugins(): array
     {
         return [
-            new CheckoutConfirmedPreCheckTest(),
+            new CheckoutConfirmedPreCheck(),
         ];
     }
 
