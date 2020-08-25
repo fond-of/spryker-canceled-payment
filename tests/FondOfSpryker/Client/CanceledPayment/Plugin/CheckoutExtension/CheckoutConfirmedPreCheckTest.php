@@ -23,7 +23,7 @@ class CheckoutConfirmedPreCheckTest extends Unit
     protected function _before(): void
     {
         $this->quoteTransferMock = $this->getMockBuilder(QuoteTransfer::class)
-                                    ->onlyMethods(['getCheckoutConfirmed'])
+                                    ->onlyMethods(['getCheckoutConfirmed', 'getOrderReference', 'getIdSalesOrder'])
                                     ->getMock();
         $this->checkoutConfirmPreCheck = new CheckoutConfirmedPreCheckPlugin();
     }
@@ -31,9 +31,11 @@ class CheckoutConfirmedPreCheckTest extends Unit
     /**
      * @return void
      */
-    public function testCheckoutConfirmed(): void
+    public function testOrderPlaced(): void
     {
-        $this->quoteTransferMock->method('getCheckoutConfirmed')->willReturn(true);
+        $this->quoteTransferMock->method('getOrderReference')->willReturn('abc');
+        $this->quoteTransferMock->method('getIdSalesOrder')->willReturn('1234');
+
         $response = $this->checkoutConfirmPreCheck->isValid($this->quoteTransferMock);
 
         $this->assertEquals(false, $response->getIsSuccessful());
@@ -42,20 +44,11 @@ class CheckoutConfirmedPreCheckTest extends Unit
     /**
      * @return void
      */
-    public function testCheckoutNotConfirmed(): void
+    public function testOrderNotPlaced(): void
     {
-        $this->quoteTransferMock->method('getCheckoutConfirmed')->willReturn(false);
-        $response = $this->checkoutConfirmPreCheck->isValid($this->quoteTransferMock);
+        $this->quoteTransferMock->method('getOrderReference')->willReturn(null);
+        $this->quoteTransferMock->method('getIdSalesOrder')->willReturn(null);
 
-        $this->assertEquals(true, $response->getIsSuccessful());
-    }
-
-    /**
-     * @return void
-     */
-    public function testCheckoutConfirmedNull(): void
-    {
-        $this->quoteTransferMock->method('getCheckoutConfirmed')->willReturn(null);
         $response = $this->checkoutConfirmPreCheck->isValid($this->quoteTransferMock);
 
         $this->assertEquals(true, $response->getIsSuccessful());
