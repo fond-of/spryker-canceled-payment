@@ -22,7 +22,8 @@ class CheckoutConfirmedPreCheckPlugin implements CheckoutPreCheckPluginInterface
         $response = new QuoteValidationResponseTransfer();
 
         $response->setIsSuccessful(
-            $quoteTransfer->getCheckoutConfirmed() === false
+            $quoteTransfer->getOrderReference() === null
+            && $quoteTransfer->getIdSalesOrder() === null
         )->addMessage(
             (new MessageTransfer())
             ->setType(static::MESSAGE_TYPE_ERROR)
