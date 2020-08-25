@@ -53,6 +53,17 @@ class CheckoutConfirmedPreCheckTest extends Unit
     /**
      * @return void
      */
+    public function testCheckoutConfirmedNull(): void
+    {
+        $this->quoteTransferMock->method('getCheckoutConfirmed')->willReturn(null);
+        $response = $this->checkoutConfirmPreCheck->isValid($this->quoteTransferMock);
+
+        $this->assertEquals(true, $response->getIsSuccessful());
+    }
+
+    /**
+     * @return void
+     */
     public function testErrorMessage(): void
     {
         $this->quoteTransferMock->method('getCheckoutConfirmed')->willReturn(false);

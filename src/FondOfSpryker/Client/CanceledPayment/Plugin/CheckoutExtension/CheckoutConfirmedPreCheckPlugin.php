@@ -23,6 +23,7 @@ class CheckoutConfirmedPreCheckPlugin implements CheckoutPreCheckPluginInterface
 
         $response->setIsSuccessful(
             $quoteTransfer->getCheckoutConfirmed() === false
+            || $quoteTransfer->getCheckoutConfirmed() === null
         )->addMessage(
             (new MessageTransfer())
             ->setType(static::MESSAGE_TYPE_ERROR)
